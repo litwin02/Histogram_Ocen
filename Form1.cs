@@ -13,16 +13,15 @@ namespace Histogram_Ocen
 {
     public partial class MainWindow : Form
     {
+        public static string fileContent { get; set; }
+        public static string filePath { get; set; }
         public MainWindow()
         {
             InitializeComponent();
         }
 
         public void bt_open_file_Click(object sender, EventArgs e)
-        {
-            var fileContent = string.Empty;
-            var filePath = string.Empty;
-
+        {           
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
@@ -33,23 +32,23 @@ namespace Histogram_Ocen
                 {
                     filePath = openFileDialog.FileName;
 
-                    var fileStream = openFileDialog.OpenFile();
-
-                    using (StreamReader reader = new StreamReader(fileStream))
+                    using (Stream fileStream = openFileDialog.OpenFile())
                     {
-                        fileContent = reader.ReadToEnd();
+                        using (StreamReader reader = new StreamReader(fileStream))
+                        {
+                            fileContent = reader.ReadToEnd();
+                        }
                     }
                     MessageBox.Show("Otwarto poprawnie plik");
                     bt_show_graph.Enabled = true;
-                    
                 }
             }
         }
 
         private void bt_show_graph_Click(object sender, EventArgs e)
         {
-            GraphWindow wykres = new GraphWindow();
-            wykres.ShowDialog();
+            GraphWindow graphWindow = new GraphWindow();
+            graphWindow.Show();
         }
     }
 }

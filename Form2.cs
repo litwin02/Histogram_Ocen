@@ -19,6 +19,12 @@ namespace Histogram_Ocen
 
         private void bt_generate_Click(object sender, EventArgs e)
         {
+            Histogram histogram = new Histogram(MainWindow.fileContent);
+            histogram.GenerateHistogram();
+            foreach (int num in histogram.Marks)
+            {
+                MessageBox.Show($"{num}");
+            }
 
         }
     }

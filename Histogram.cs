@@ -4,26 +4,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Collections;
 
 namespace Histogram_Ocen
 {
     public class Histogram
     {
+        public Histogram(string file_string)
+        {
+            fileContent = file_string;
+        }
+        public string fileContent { get; set; }
         public string productName { get; set; }
         public int axisX_min { get; set; }
         public int axisX_max { get; set; }
         public int axisY_min { get; set; }
         public int axisY_max { get; set; }
+        public ArrayList Marks { get; set; }
 
-        public void GenerateGraph(string content_of_file)
+        public int ParsingStringToInt(string data)
         {
-            bool containsInt = content_of_file.Any(char.IsDigit);
+            int result = 0;
+            int.TryParse(data, out result);
+            return result;
+        }
+        public void GenerateHistogram()
+        {
+            Marks = new ArrayList();
+            string reg_pattern_for_numbers= @"\d+";
+            bool containsInt = fileContent.Any(char.IsDigit);
             if(containsInt==true)
             {
-                Regex rx = new Regex(@"[""]");
-                MatchCollection match = rx.Matches(content_of_file);
-                string zwrot = match;
-
+                Regex regex = new Regex(reg_pattern_for_numbers);
+                foreach(Match match in regex.Matches(fileContent))
+                {
+                    Marks.Add(ParsingStringToInt(match.Value));
+                }
+                
             }
         }
 
