@@ -1,0 +1,11 @@
+C:\Users\wizhe\Desktop\projekty studia\Histogram_Ocen\Histogram_Ocen\bin\Debug\Histogram_Ocen.exe.config
+C:\Users\wizhe\Desktop\projekty studia\Histogram_Ocen\Histogram_Ocen\bin\Debug\Histogram_Ocen.exe
+C:\Users\wizhe\Desktop\projekty studia\Histogram_Ocen\Histogram_Ocen\bin\Debug\Histogram_Ocen.pdb
+C:\Users\wizhe\Desktop\projekty studia\Histogram_Ocen\Histogram_Ocen\obj\Debug\Histogram_Ocen.csproj.AssemblyReference.cache
+C:\Users\wizhe\Desktop\projekty studia\Histogram_Ocen\Histogram_Ocen\obj\Debug\Histogram_Ocen.MainWindow.resources
+C:\Users\wizhe\Desktop\projekty studia\Histogram_Ocen\Histogram_Ocen\obj\Debug\Histogram_Ocen.Properties.Resources.resources
+C:\Users\wizhe\Desktop\projekty studia\Histogram_Ocen\Histogram_Ocen\obj\Debug\Histogram_Ocen.csproj.GenerateResource.cache
+C:\Users\wizhe\Desktop\projekty studia\Histogram_Ocen\Histogram_Ocen\obj\Debug\Histogram_Ocen.csproj.CoreCompileInputs.cache
+C:\Users\wizhe\Desktop\projekty studia\Histogram_Ocen\Histogram_Ocen\obj\Debug\Histogram_Ocen.exe
+C:\Users\wizhe\Desktop\projekty studia\Histogram_Ocen\Histogram_Ocen\obj\Debug\Histogram_Ocen.pdb
+C:\Users\wizhe\Desktop\projekty studia\Histogram_Ocen\Histogram_Ocen\obj\Debug\Histogram_Ocen.GraphWindow.resources
