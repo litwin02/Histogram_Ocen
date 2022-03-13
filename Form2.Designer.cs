@@ -32,26 +32,26 @@ namespace Histogram_Ocen
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.graph = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.bt_generate = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.histogram)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.graph)).BeginInit();
             this.SuspendLayout();
             // 
-            // histogram
+            // graph
             // 
             chartArea1.Name = "ChartArea1";
-            this.histogram.ChartAreas.Add(chartArea1);
+            this.graph.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
-            this.histogram.Legends.Add(legend1);
-            this.histogram.Location = new System.Drawing.Point(32, 21);
-            this.histogram.Name = "histogram";
+            this.graph.Legends.Add(legend1);
+            this.graph.Location = new System.Drawing.Point(32, 21);
+            this.graph.Name = "graph";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
-            this.histogram.Series.Add(series1);
-            this.histogram.Size = new System.Drawing.Size(751, 497);
-            this.histogram.TabIndex = 0;
-            this.histogram.Text = "chart1";
+            this.graph.Series.Add(series1);
+            this.graph.Size = new System.Drawing.Size(751, 497);
+            this.graph.TabIndex = 0;
+            this.graph.Text = "chart1";
             // 
             // bt_generate
             // 
@@ -69,17 +69,17 @@ namespace Histogram_Ocen
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 572);
             this.Controls.Add(this.bt_generate);
-            this.Controls.Add(this.histogram);
+            this.Controls.Add(this.graph);
             this.Name = "GraphWindow";
             this.Text = "Histogram";
-            ((System.ComponentModel.ISupportInitialize)(this.histogram)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.graph)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataVisualization.Charting.Chart histogram;
+        private System.Windows.Forms.DataVisualization.Charting.Chart graph;
         private System.Windows.Forms.Button bt_generate;
     }
 }

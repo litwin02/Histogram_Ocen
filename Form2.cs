@@ -21,10 +21,17 @@ namespace Histogram_Ocen
         {
             Histogram histogram = new Histogram(MainWindow.fileContent);
             histogram.GenerateHistogram();
-            foreach (int num in histogram.Marks)
-            {
-                MessageBox.Show($"{num}");
-            }
+            var objChart = graph.ChartAreas[0];
+            //x axis set
+            objChart.AxisX.Interval = 1;
+            objChart.AxisX.Minimum = histogram.AxisX_min;
+            objChart.AxisX.Maximum = histogram.AxisX_max;
+            //y axis set
+            objChart.AxisY.Interval = 1;
+            objChart.AxisY.Minimum = histogram.AxisY_min;
+            objChart.AxisY.Maximum = histogram.AxisY_max;
+            //clear series
+            graph.Series.Clear();
 
         }
     }

@@ -12,15 +12,15 @@ namespace Histogram_Ocen
     {
         public Histogram(string file_string)
         {
-            fileContent = file_string;
+            FileContent = file_string;
         }
-        public string fileContent { get; set; }
-        public string productName { get; set; }
-        public int axisX_min { get; set; }
-        public int axisX_max { get; set; }
-        public int axisY_min { get; set; }
-        public int axisY_max { get; set; }
-        public ArrayList Marks { get; set; }
+        public string FileContent { get; set; }
+        public string ProductName { get; set; }
+        public int AxisX_min { get; set; }
+        public int AxisX_max { get; set; }
+        public int AxisY_min { get; set; }
+        public int AxisY_max { get; set; }
+        public List<int> Marks { get; set; }
 
         public int ParsingStringToInt(string data)
         {
@@ -30,19 +30,34 @@ namespace Histogram_Ocen
         }
         public void GenerateHistogram()
         {
-            Marks = new ArrayList();
-            string reg_pattern_for_numbers= @"\d+";
-            bool containsInt = fileContent.Any(char.IsDigit);
-            if(containsInt==true)
+            Marks = new List<int>();
+            SearchForNumbers(Marks);
+            AxisX_min = Marks.Min();
+            AxisX_max = Marks.Max();
+            CountOccurrence(Marks);
+        }
+        public void SearchForNumbers(List<int> list)
+        {
+            string reg_pattern_for_numbers = @"\d+";
+            bool containsInt = FileContent.Any(char.IsDigit);
+            if (containsInt == true)
             {
                 Regex regex = new Regex(reg_pattern_for_numbers);
-                foreach(Match match in regex.Matches(fileContent))
+                foreach (Match match in regex.Matches(FileContent))
                 {
-                    Marks.Add(ParsingStringToInt(match.Value));
+                    list.Add(ParsingStringToInt(match.Value));
                 }
-                
             }
         }
-
+        public void CountOccurrence(List<int> list)
+        {
+            int[] Values = list.ToArray();
+            int FreqSize = AxisX_max - AxisX_min + 1;
+            int[] Frequency = new int[FreqSize];
+            for(int i=0; i<FreqSize; i++) { Frequency[i] = 0; }
+            for(int i=0; i<Values.Length; i++) { int index = Values[i] - AxisX_min; Frequency[index]++; }
+            AxisY_min = Frequency.Min();
+            AxisY_max = Frequency.Max();
+        }
     }
 }
