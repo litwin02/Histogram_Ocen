@@ -16,12 +16,8 @@ namespace Histogram_Ocen
         }
         public string FileContent { get; set; }
         public string ProductName { get; set; }
-        public int AxisX_min { get; set; }
-        public int AxisX_max { get; set; }
-        public int AxisY_min { get; set; }
-        public int AxisY_max { get; set; }
         public List<int> Marks { get; set; }
-
+        public List<ReviewElement> Reviews { get; set; }
         public int ParsingStringToInt(string data)
         {
             int result = 0;
@@ -31,10 +27,8 @@ namespace Histogram_Ocen
         public void GenerateHistogram()
         {
             Marks = new List<int>();
-            SearchForNumbers(Marks);
-            AxisX_min = Marks.Min();
-            AxisX_max = Marks.Max();
-            CountOccurrence(Marks);
+            SearchForNumbers(Marks)           
+            CreateListOfReviews();
         }
         public void SearchForNumbers(List<int> list)
         {
@@ -49,15 +43,26 @@ namespace Histogram_Ocen
                 }
             }
         }
-        public void CountOccurrence(List<int> list)
+
+        public void CreateListOfReviews()
         {
-            int[] Values = list.ToArray();
-            int FreqSize = AxisX_max - AxisX_min + 1;
-            int[] Frequency = new int[FreqSize];
-            for(int i=0; i<FreqSize; i++) { Frequency[i] = 0; }
-            for(int i=0; i<Values.Length; i++) { int index = Values[i] - AxisX_min; Frequency[index]++; }
-            AxisY_min = Frequency.Min();
-            AxisY_max = Frequency.Max();
+            if (Marks.Any() == true)
+            {
+                Reviews = new List<ReviewElement>();
+                
+                for (int i = 0; i < Marks.Count; i++)
+                {
+                    Reviews.Add(new ReviewElement(Marks[i], 0));
+                    for (int j = 0; j < Marks.Count; j++)
+                    {                       
+                        if (Reviews[i].ReviewStar == Marks[j])
+                        {
+                            Reviews[i].Occurance++;
+                        }
+                       
+                    }
+                }
+            }
         }
     }
 }

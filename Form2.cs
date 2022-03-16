@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Histogram_Ocen
 {
@@ -21,18 +22,16 @@ namespace Histogram_Ocen
         {
             Histogram histogram = new Histogram(MainWindow.fileContent);
             histogram.GenerateHistogram();
-            var objChart = graph.ChartAreas[0];
-            //x axis set
-            objChart.AxisX.Interval = 1;
-            objChart.AxisX.Minimum = histogram.AxisX_min;
-            objChart.AxisX.Maximum = histogram.AxisX_max;
-            //y axis set
-            objChart.AxisY.Interval = 1;
-            objChart.AxisY.Minimum = histogram.AxisY_min;
-            objChart.AxisY.Maximum = histogram.AxisY_max;
             //clear series
-            graph.Series.Clear();
-
+            chart.Series.Clear();
+            //create new series
+            Series series = new Series();
+            series.ChartType = SeriesChartType.Column;
+            series.Name = "Histogram";
+            for(int i=0; i<histogram.Reviews.Count(); i++)
+                series.Points.AddXY(histogram.Reviews[i].ReviewStar, histogram.Reviews[i].Occurance);
+            chart.Series.Add(series);
+            
         }
     }
 }
