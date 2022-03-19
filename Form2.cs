@@ -28,10 +28,25 @@ namespace Histogram_Ocen
             Series series = new Series();
             series.ChartType = SeriesChartType.Column;
             series.Name = "Histogram";
-            for(int i=0; i<histogram.Reviews.Count(); i++)
-                series.Points.AddXY(histogram.Reviews[i].ReviewStar, histogram.Reviews[i].Occurance);
-            chart.Series.Add(series);
+            for (int i = 0; i<histogram.Occuarance.Length; i++)
+            {
+                if (histogram.Occuarance[i] == 0) continue;
+                series.Points.AddXY(i+histogram.AxisX_min, histogram.Occuarance[i]);
+            }
             
+            chart.Series.Add(series);
+            bt_change_color.Enabled = true;
+        }
+
+        private void bt_change_color_Click(object sender, EventArgs e)
+        {
+            using(ColorDialog graph_color = new ColorDialog())
+            {
+                if(graph_color.ShowDialog() == DialogResult.OK)
+                {
+                    chart.Series["Histogram"].Color = graph_color.Color;
+                }
+            }
         }
     }
 }

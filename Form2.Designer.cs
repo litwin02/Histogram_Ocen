@@ -33,6 +33,7 @@ namespace Histogram_Ocen
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.bt_generate = new System.Windows.Forms.Button();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.bt_change_color = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,11 +59,23 @@ namespace Histogram_Ocen
             this.chart.TabIndex = 2;
             this.chart.Text = "chart1";
             // 
+            // bt_change_color
+            // 
+            this.bt_change_color.Enabled = false;
+            this.bt_change_color.Location = new System.Drawing.Point(800, 65);
+            this.bt_change_color.Name = "bt_change_color";
+            this.bt_change_color.Size = new System.Drawing.Size(112, 47);
+            this.bt_change_color.TabIndex = 3;
+            this.bt_change_color.Text = "Zmień kolor wykresu";
+            this.bt_change_color.UseVisualStyleBackColor = true;
+            this.bt_change_color.Click += new System.EventHandler(this.bt_change_color_Click);
+            // 
             // GraphWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 572);
+            this.Controls.Add(this.bt_change_color);
             this.Controls.Add(this.chart);
             this.Controls.Add(this.bt_generate);
             this.Name = "GraphWindow";
@@ -75,5 +88,6 @@ namespace Histogram_Ocen
         #endregion
         private System.Windows.Forms.Button bt_generate;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart;
+        private System.Windows.Forms.Button bt_change_color;
     }
 }

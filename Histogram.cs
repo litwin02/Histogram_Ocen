@@ -16,8 +16,12 @@ namespace Histogram_Ocen
         }
         public string FileContent { get; set; }
         public string ProductName { get; set; }
+        public int[] Review { get; set; }
+        public int[] Occuarance { get; set; }
+        public int AxisX_min { get; set; }
+        public int AxisX_max { get; set; }
+        public int Freq { get; set; }
         public List<int> Marks { get; set; }
-        public List<ReviewElement> Reviews { get; set; }
         public int ParsingStringToInt(string data)
         {
             int result = 0;
@@ -27,7 +31,7 @@ namespace Histogram_Ocen
         public void GenerateHistogram()
         {
             Marks = new List<int>();
-            SearchForNumbers(Marks)           
+            SearchForNumbers(Marks);
             CreateListOfReviews();
         }
         public void SearchForNumbers(List<int> list)
@@ -45,23 +49,16 @@ namespace Histogram_Ocen
         }
 
         public void CreateListOfReviews()
-        {
-            if (Marks.Any() == true)
+        { 
+            AxisX_min = Marks.Min();
+            AxisX_max = Marks.Max();
+            Freq = AxisX_max-AxisX_min+1;
+            Review = Marks.ToArray();
+            Occuarance = new int[Freq];
+            for(int i=0; i<Review.Length; i++)
             {
-                Reviews = new List<ReviewElement>();
-                
-                for (int i = 0; i < Marks.Count; i++)
-                {
-                    Reviews.Add(new ReviewElement(Marks[i], 0));
-                    for (int j = 0; j < Marks.Count; j++)
-                    {                       
-                        if (Reviews[i].ReviewStar == Marks[j])
-                        {
-                            Reviews[i].Occurance++;
-                        }
-                       
-                    }
-                }
+                int index = Review[i] - AxisX_min;
+                Occuarance[index]++;
             }
         }
     }
