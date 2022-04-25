@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
+
 namespace Histogram_Ocen
 {
     public partial class GraphWindow : Form
@@ -18,7 +19,7 @@ namespace Histogram_Ocen
             InitializeComponent();
         }
 
-        private void bt_generate_Click(object sender, EventArgs e)
+        public void bt_generate_Click(object sender, EventArgs e)
         {
             Histogram histogram = new Histogram(MainWindow.fileContent);
             histogram.GenerateHistogram();
@@ -36,6 +37,10 @@ namespace Histogram_Ocen
             
             chart.Series.Add(series);
             bt_change_color.Enabled = true;
+            bt_disable_legend.Enabled = true;
+            cb_chart_type.Enabled = true;
+            cb_chart_type.SelectedIndex = 0;
+            bt_generate.Enabled = false;
         }
 
         private void bt_change_color_Click(object sender, EventArgs e)
@@ -46,6 +51,40 @@ namespace Histogram_Ocen
                 {
                     chart.Series["Histogram"].Color = graph_color.Color;
                 }
+            }
+        }
+        public void bt_disable_legend_Click(object sender, EventArgs e)
+        {
+            if (chart.Series["Histogram"].IsVisibleInLegend == false)
+            {
+                chart.Series["Histogram"].IsVisibleInLegend = true;
+            }
+            else
+            {
+                chart.Series["Histogram"].IsVisibleInLegend = false;
+            }
+        } 
+
+        private void GraphWindow_Load(object sender, EventArgs e)
+        {
+            cb_chart_type.Items.Add("słupkowy");
+            cb_chart_type.Items.Add("kołowy");
+            cb_chart_type.Items.Add("punktowy");
+        }
+
+        public void cb_chart_type_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (cb_chart_type.SelectedIndex == 0)
+            {
+                chart.Series["Histogram"].ChartType = SeriesChartType.Column;
+            }
+            if (cb_chart_type.SelectedIndex == 1)
+            {
+                chart.Series["Histogram"].ChartType = SeriesChartType.Pie;
+            }
+            if (cb_chart_type.SelectedIndex == 2)
+            {
+                chart.Series["Histogram"].ChartType = SeriesChartType.Point;
             }
         }
     }
