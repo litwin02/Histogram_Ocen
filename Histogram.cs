@@ -15,7 +15,6 @@ namespace Histogram_Ocen
             FileContent = file_string;
         }
         public string FileContent { get; set; }
-        public string ProductName { get; set; }
         public int[] Review { get; set; }
         public int[] Occuarance { get; set; }
         public int AxisX_min { get; set; }

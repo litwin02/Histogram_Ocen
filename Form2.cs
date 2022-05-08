@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.IO;
 
 
 namespace Histogram_Ocen
@@ -41,6 +42,7 @@ namespace Histogram_Ocen
             cb_chart_type.Enabled = true;
             cb_chart_type.SelectedIndex = 0;
             bt_generate.Enabled = false;
+            bt_save_to_txt.Enabled = true;
         }
 
         private void bt_change_color_Click(object sender, EventArgs e)
@@ -87,5 +89,38 @@ namespace Histogram_Ocen
                 chart.Series["Histogram"].ChartType = SeriesChartType.Point;
             }
         }
+
+        private void bt_save_to_txt_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog save_txt = new SaveFileDialog())
+            {
+                save_txt.Filter = "txt files (*.txt)|*.txt";
+                save_txt.RestoreDirectory = true;
+                save_txt.FilterIndex = 2;
+                save_txt.DefaultExt = "txt";
+                
+                if (save_txt.ShowDialog() == DialogResult.OK)
+                {
+                    Stream txtStream = save_txt.OpenFile();
+                    StreamWriter txt = new StreamWriter(txtStream);
+                    List<int> Marks;
+                    Histogram histogram = new Histogram(MainWindow.fileContent);
+                    Marks = new List<int>();
+                    histogram.SearchForNumbers(Marks);
+                    var duplicates = Marks.GroupBy(x => x)
+                           .Where(g => g.Count() > 1)
+                           .Select(y => $"Ocena = {y.Key} | Ilość = {y.Count()}")
+                           .ToList();
+                    foreach (var i in duplicates)
+                    {
+                        txt.WriteLine(i);
+                    }
+                    txt.Close();
+                    txtStream.Close();
+                }
+                MessageBox.Show("Zapisano plik");
+            }            
+        }
+
     }
 }

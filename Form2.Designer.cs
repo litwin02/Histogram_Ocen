@@ -29,14 +29,15 @@ namespace Histogram_Ocen
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.bt_generate = new System.Windows.Forms.Button();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.bt_change_color = new System.Windows.Forms.Button();
             this.bt_disable_legend = new System.Windows.Forms.Button();
             this.cb_chart_type = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.bt_save_to_txt = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,10 +54,10 @@ namespace Histogram_Ocen
             // 
             // chart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart.Legends.Add(legend2);
+            chartArea3.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart.Legends.Add(legend3);
             this.chart.Location = new System.Drawing.Point(9, 10);
             this.chart.Margin = new System.Windows.Forms.Padding(2);
             this.chart.Name = "chart";
@@ -106,11 +107,23 @@ namespace Histogram_Ocen
             this.label1.TabIndex = 6;
             this.label1.Text = "Typ Wykresu";
             // 
+            // bt_save_to_txt
+            // 
+            this.bt_save_to_txt.Enabled = false;
+            this.bt_save_to_txt.Location = new System.Drawing.Point(600, 140);
+            this.bt_save_to_txt.Name = "bt_save_to_txt";
+            this.bt_save_to_txt.Size = new System.Drawing.Size(84, 38);
+            this.bt_save_to_txt.TabIndex = 7;
+            this.bt_save_to_txt.Text = "Zapisz wyniki do pliku txt";
+            this.bt_save_to_txt.UseVisualStyleBackColor = true;
+            this.bt_save_to_txt.Click += new System.EventHandler(this.bt_save_to_txt_Click);
+            // 
             // GraphWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(693, 465);
+            this.Controls.Add(this.bt_save_to_txt);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cb_chart_type);
             this.Controls.Add(this.bt_disable_legend);
@@ -134,5 +147,6 @@ namespace Histogram_Ocen
         private System.Windows.Forms.Button bt_disable_legend;
         private System.Windows.Forms.ComboBox cb_chart_type;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button bt_save_to_txt;
     }
 }
