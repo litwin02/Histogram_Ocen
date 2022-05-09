@@ -20,6 +20,7 @@ namespace Histogram_Ocen
         public int AxisX_min { get; set; }
         public int AxisX_max { get; set; }
         public int Freq { get; set; }
+        public bool isEmpty { get; set; }
         public List<int> Marks { get; set; }
         public int ParsingStringToInt(string data)
         {
@@ -31,7 +32,10 @@ namespace Histogram_Ocen
         {
             Marks = new List<int>();
             SearchForNumbers(Marks);
-            CreateListOfReviews();
+            if (Marks.Count == 0)
+                isEmpty = true;
+            else
+                CreateListOfReviews();
         }
         public void SearchForNumbers(List<int> list)
         {
@@ -46,7 +50,6 @@ namespace Histogram_Ocen
                 }
             }
         }
-
         public void CreateListOfReviews()
         { 
             AxisX_min = Marks.Min();

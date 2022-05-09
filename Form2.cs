@@ -24,25 +24,30 @@ namespace Histogram_Ocen
         {
             Histogram histogram = new Histogram(MainWindow.fileContent);
             histogram.GenerateHistogram();
-            //clear series
-            chart.Series.Clear();
-            //create new series
-            Series series = new Series();
-            series.ChartType = SeriesChartType.Column;
-            series.Name = "Histogram";
-            for (int i = 0; i<histogram.Occuarance.Length; i++)
+            if (histogram.isEmpty == true)
+                MessageBox.Show("Plik nie zawiera liczb!");
+            else
             {
-                if (histogram.Occuarance[i] == 0) continue;
-                series.Points.AddXY(i+histogram.AxisX_min, histogram.Occuarance[i]);
+                //clear series
+                chart.Series.Clear();
+                //create new series
+                Series series = new Series();
+                series.ChartType = SeriesChartType.Column;
+                series.Name = "Histogram";
+                for (int i = 0; i < histogram.Occuarance.Length; i++)
+                {
+                    if (histogram.Occuarance[i] == 0) continue;
+                    series.Points.AddXY(i + histogram.AxisX_min, histogram.Occuarance[i]);
+                }
+
+                chart.Series.Add(series);
+                bt_change_color.Enabled = true;
+                bt_disable_legend.Enabled = true;
+                cb_chart_type.Enabled = true;
+                cb_chart_type.SelectedIndex = 0;
+                bt_generate.Enabled = false;
+                bt_save_to_txt.Enabled = true;
             }
-            
-            chart.Series.Add(series);
-            bt_change_color.Enabled = true;
-            bt_disable_legend.Enabled = true;
-            cb_chart_type.Enabled = true;
-            cb_chart_type.SelectedIndex = 0;
-            bt_generate.Enabled = false;
-            bt_save_to_txt.Enabled = true;
         }
 
         private void bt_change_color_Click(object sender, EventArgs e)
